@@ -1,5 +1,7 @@
 # formbuilder
 
+Vue project that consume FormBuilder Service
+
 ## Project setup
 ```
 yarn install
