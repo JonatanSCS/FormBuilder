@@ -1,16 +1,20 @@
 <template>
   <div id="app">
-    <HelloWorld />
+    <Form
+      id="insert_1020"
+      label="Publicar anuncio"
+      type="group"
+    />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Form from './components/Form/index.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    Form
   }
 }
 </script>
