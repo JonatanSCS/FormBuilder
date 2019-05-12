@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import Base from '../Base.vue'
+import Base from './Base.vue'
 import Picker from '@/components/Field/Picker.vue'
 import FieldSet from '@/components/Field/FieldSet.vue'
 

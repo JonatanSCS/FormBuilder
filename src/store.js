@@ -5,28 +5,51 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    default: {},
-    current: {}
+    fields: [],
+    rules: []
+
   },
   mutations: {
     /**
-     * Update form field
+     * Update fields field
+     * @param {object} state of store
+     * @param {object} fields to change
+     * @returns {null} no return
+     */
+    updateFields(state, fields) {
+      state.fields = fields
+    },
+    /**
+     * Update fields field
+     * Search for field to change and assign new value
      * @param {object} state of store
      * @param {object} field to change
      * @returns {null} no return
      */
     updateField(state, field) {
-      state[field.type] = {
-        ...state[field.type],
-        ...field
+      let fieldsToFind = state.fields
+      if (field.parent) {
+        const positionParent = state.fields.findIndex(item => item.id === field.parent)
+        fieldsToFind = state.fields[positionParent].fields
       }
+      const itemToChange = fieldsToFind.find(item => item.id === field.id)
+      Object.assign(itemToChange, field.data);
     }
   },
   actions: {
     /**
-     * Update form field
+     * Update fields field
      * @param {object} context of store
-     * @param {object} field to change
+     * @param {object} fields to set
+     * @returns {null} no return
+     */
+    updateFields({ commit }, fields) {
+      commit('updateFields', fields)
+    },
+    /**
+     * Update fields field
+     * @param {object} context of store
+     * @param {object} field to set
      * @returns {null} no return
      */
     updateField({ commit }, field) {

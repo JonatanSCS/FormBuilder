@@ -6,6 +6,7 @@
       <component
         :key="field.id"
         :is="`Field_${field.type}`"
+        :parent="id"
         v-bind="field"
       />
     </template>
@@ -17,7 +18,7 @@ import Base from './Base.vue'
 import Picker from './Picker.vue'
 
 export default {
-  name: 'Picker',
+  name: 'FieldSet',
   extends: Base,
   components: {
     Field_picker: Picker

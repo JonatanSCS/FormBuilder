@@ -1,23 +1,24 @@
 <template>
   <div id="app">
-    <Form
+    <component
       :id="form.id"
       :label="form.label"
       :type="form.type"
-      :fields="form.fields"
+      :is="`Form_${form.type}`"
+      :fields="$store.state.fields"
     />
   </div>
 </template>
 
 <script>
-import Form from './components/Form/index.vue'
+import Group from './components/Form/Group.vue'
 
 import response from './response'
 
 export default {
   name: 'app',
   components: {
-    Form
+    Form_group: Group
   },
   /**
    * Created used for:
@@ -25,7 +26,35 @@ export default {
    * @returns {null} no return
    */
   created() {
-    this.form = response.form
+    const { id, label, type, fields } = this.mutateForm(response.form)
+    this.form = { id, label, type }
+    this.$store.dispatch('updateFields', fields)
+  },
+  methods: {
+    /**
+     * Mutate form just for better rules access
+     * @param {object} form by service response
+     * @returns {object} new form with rules mutated
+     */
+    mutateForm(form) {
+      const mutateRes = form.rules
+      let newRules = {}
+      Object.keys(mutateRes).forEach(affected => {
+        mutateRes[affected].forEach(rule => {
+          rule.when.forEach(when => {
+            let newRule = [{ ...when, id: affected, ...rule.then }]
+
+            if (newRules[when.id]) {
+              newRule = [...newRules[when.id], ...newRule]
+            }
+
+            newRules = { ...newRules, [when.id]: newRule }
+          })
+        })
+      })
+      form.rules = newRules
+      return form
+    }
   }
 }
 </script>

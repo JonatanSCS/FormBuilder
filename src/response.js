@@ -195,6 +195,106 @@ export default {
           }
         ]
       }
-    ]
+    ],
+    rules: {
+      area: [
+        {
+          when: [
+            {
+              operator: 'CHANGED',
+              id: 'region',
+              value: []
+            }
+          ],
+          then: {
+            data: {
+              value: '',
+              datalist: [],
+              hidden: false,
+              disabled: true
+            }
+          }
+        },
+        {
+          when: [
+            {
+              operator: 'EXISTS',
+              id: 'region',
+              value: []
+            },
+            {
+              operator: 'CHANGED',
+              id: 'municipality',
+              value: []
+            }
+          ],
+          then: {
+            data: {
+              value: '',
+              datalist: [],
+              hidden: false,
+              disabled: true
+            },
+            remote: true
+          }
+        }
+      ],
+      municipality: [
+        {
+          when: [
+            {
+              operator: 'CHANGED',
+              id: 'region',
+              value: []
+            }
+          ],
+          then: {
+            data: {
+              value: '',
+              datalist: [],
+              hidden: false,
+              disabled: true
+            },
+            remote: true
+          }
+        }
+      ],
+      rooms: [
+        {
+          when: [
+            {
+              operator: 'NIN',
+              id: 'estate_type',
+              value: ['1', '2']
+            }
+          ],
+          then: {
+            data: {
+              value: '1',
+              hidden: true,
+              disabled: true,
+              required: false
+            }
+          }
+        },
+        {
+          when: [
+            {
+              operator: 'IN',
+              id: 'estate_type',
+              value: ['1', '2']
+            }
+          ],
+          then: {
+            data: {
+              value: '1',
+              hidden: false,
+              disabled: false,
+              required: false
+            }
+          }
+        }
+      ]
+    }
   }
 }
