@@ -41,6 +41,25 @@ export default {
       type: Array,
       default: defaultArray
     }
+  },
+  /**
+   * Created to suscribe default field value
+   * @returns {null} no return
+   */
+  created() {
+    const value = this.value || ''
+    this.$store.dispatch('updateField', { [this.id]: value, type: 'default' })
+  },
+  methods: {
+    /**
+     * Handle field change
+     * @param {event} event of field changed
+     * @returns {null} no return
+     */
+    handleChange(event) {
+      const { name, value } = event.target
+      this.$store.dispatch('updateField', { [name]: value, type: 'current' })
+    }
   }
 }
 

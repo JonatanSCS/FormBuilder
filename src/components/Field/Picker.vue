@@ -2,9 +2,9 @@
   <div>
     <p class="field-label">{{ label }}</p>
     <p v-if="hint" class="field-hint">{{ hint }}</p>
-    <select :name="id" :disabled="disabled">
+    <select :name="id" :disabled="disabled" @change="handleChange">
       <template v-for="data in datalist">
-        <option :key="data.value" value="data.value">{{ data.text }}</option>
+        <option :key="data.value" :value="data.value">{{ data.text }}</option>
       </template>
     </select>
   </div>

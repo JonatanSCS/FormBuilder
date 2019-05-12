@@ -22,12 +22,10 @@ export default {
   /**
    * Created used for:
    * Save form response to prop
-   * @returns {null} return 0
+   * @returns {null} no return
    */
   created() {
     this.form = response.form
-
-    return null
   }
 }
 </script>
