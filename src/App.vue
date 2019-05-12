@@ -5,16 +5,27 @@
       label="Publicar anuncio"
       type="group"
     />
+    <Picker
+      id="subject"
+      type="text"
+      label="Título"
+      display="text"
+      hint="Escribe un título"
+      required
+      disabled
+    />
   </div>
 </template>
 
 <script>
 import Form from './components/Form/index.vue'
+import Picker from './components/Field/Picker.vue'
 
 export default {
   name: 'app',
   components: {
-    Form
+    Form,
+    Picker
   }
 }
 </script>

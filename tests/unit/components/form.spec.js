@@ -5,7 +5,8 @@ describe('Init component with defaults', () => {
   const wrapper = mount(Form, {
     propsData: {
       id: 'form_124',
-      label: 'My Form form name'
+      label: 'My Form form name',
+      type: 'group'
     }
   })
 
@@ -16,11 +17,6 @@ describe('Init component with defaults', () => {
   test('Display correct title', () => {
     const title = wrapper.find('h1')
     expect(title.text()).toBe('My Form form name')
-  })
-
-  test('Render generic form by default', () => {
-    const title = wrapper.find('h2')
-    expect(title.text()).toBe('Generic Form')
   })
 })
 
