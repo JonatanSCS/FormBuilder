@@ -2,7 +2,7 @@
   <div>
     <p class="field-label">{{ label }}</p>
     <p v-if="hint" class="field-hint">{{ hint }}</p>
-    <select name="id"></select>
+    <select :name="id"></select>
   </div>
 </template>
 
