@@ -1,7 +1,7 @@
 <template>
   <div :formId="id">
     <h1 class="title">{{ label }}</h1>
-    <component :is="`Form_${type}`"></component>
+    <component :is="`Form_${type}`" :fields="fields"/>
   </div>
 </template>
 
