@@ -28,7 +28,27 @@ export default {
     disabled: {
       type: Boolean,
       default: false
+    },
+    fields: {
+      type: Array,
+      default: defaultArray
+    },
+    datalist: {
+      type: Array,
+      default: defaultArray
+    },
+    constraints: {
+      type: Array,
+      default: defaultArray
     }
   }
+}
+
+/**
+ * Use for default value of Array type
+ * @returns {array} An empty array
+ */
+function defaultArray () {
+  return []
 }
 </script>

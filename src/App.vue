@@ -1,31 +1,33 @@
 <template>
   <div id="app">
     <Form
-      id="insert_1020"
-      label="Publicar anuncio"
-      type="group"
-    />
-    <Picker
-      id="subject"
-      type="text"
-      label="Título"
-      display="text"
-      hint="Escribe un título"
-      required
-      disabled
+      :id="form.id"
+      :label="form.label"
+      :type="form.type"
+      :fields="form.fields"
     />
   </div>
 </template>
 
 <script>
 import Form from './components/Form/index.vue'
-import Picker from './components/Field/Picker.vue'
+
+import response from './response'
 
 export default {
   name: 'app',
   components: {
-    Form,
-    Picker
+    Form
+  },
+  /**
+   * Created used for:
+   * Save form response to prop
+   * @returns {null} return 0
+   */
+  created() {
+    this.form = response.form
+
+    return null
   }
 }
 </script>

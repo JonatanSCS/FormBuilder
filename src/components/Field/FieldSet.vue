@@ -1,5 +1,7 @@
 <template>
   <div>
+    <p class="field-label">{{ label }}</p>
+    <p v-if="hint" class="field-hint">{{ hint }}</p>
     <template v-for="field in fields">
       <component
         :key="field.id"
@@ -11,16 +13,14 @@
 </template>
 
 <script>
-import Base from '../Base.vue'
-import Picker from '@/components/Field/Picker.vue'
-import FieldSet from '@/components/Field/FieldSet.vue'
+import Base from './Base.vue'
+import Picker from './Picker.vue'
 
 export default {
-  name: 'GroupForm',
+  name: 'Picker',
   extends: Base,
   components: {
-    Field_picker: Picker,
-    Field_fieldSet: FieldSet
+    Field_picker: Picker
   }
 }
 </script>
