@@ -15,6 +15,9 @@ export default {
       default: function defaultArray () {
         return []
       }
+    },
+    params: {
+      type: Object
     }
   }
 }

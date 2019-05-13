@@ -26,9 +26,10 @@ export default {
    * @returns {null} no return
    */
   created() {
-    const { id, label, type, fields } = this.mutateForm(response.form)
+    const { id, label, type, fields, rules } = this.mutateForm(response.form)
     this.form = { id, label, type }
     this.$store.dispatch('updateFields', fields)
+    this.$store.dispatch('updateRules', rules)
   },
   methods: {
     /**

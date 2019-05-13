@@ -1,12 +1,11 @@
 <template>
   <div>
-    <template v-for="field in fields">
-      <component
-        :key="field.id"
-        :is="`Field_${field.type}`"
-        v-bind="field"
-      />
-    </template>
+    <component
+      v-for="field in fields"
+      :key="field.id"
+      :is="`Field_${field.type}`"
+      v-bind="field"
+    />
   </div>
 </template>
 
@@ -18,6 +17,11 @@ import FieldSet from '@/components/Field/FieldSet.vue'
 export default {
   name: 'GroupForm',
   extends: Base,
+  props: {
+    params: {
+      type: Object
+    }
+  },
   components: {
     Field_picker: Picker,
     Field_fieldSet: FieldSet

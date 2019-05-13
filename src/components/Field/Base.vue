@@ -1,4 +1,6 @@
 <script>
+import { evaluateRule } from './utils'
+
 export default {
   name: 'Field',
   props: {
@@ -41,7 +43,7 @@ export default {
       type: Array,
       default: defaultArray
     },
-    parent: {
+    value: {
       type: String,
       default: ''
     }
@@ -52,9 +54,34 @@ export default {
      * @param {event} event of field changed
      * @returns {null} no return
      */
-    // handleChange(event) {
-    //   const { name, value } = event.target
-    // }
+    handleChange(event) {
+      const { name, value } = event.target
+      const formId = this.$store.state.form.id
+      const field = { id: name, data: { value } }
+      this.$store.dispatch('updateField', field)
+      const rules = this.$store.state.rules
+      if (rules[this.id]) {
+        rules[this.id].forEach(rule => {
+          this.applyRule(rule, { id: name, value }, formId)
+        })
+      }
+    },
+    /**
+     * Evalueate rule by fields and operator
+     * @param {object} rule to be evaluated
+     * @param {object} field to aply rule
+     * @param {string} formId of form
+     * @returns {null} no return
+     */
+    applyRule(rule, field, formId) {
+      const fieldToChange = { id: rule.id, data: rule.data }
+      this.$store.dispatch('updateField', fieldToChange)
+      evaluateRule(rule, field, formId)
+        .then(({ data }) => {
+          fieldToChange.data = data
+          this.$store.dispatch('updateField', fieldToChange)
+        })
+    }
   }
 }
 
